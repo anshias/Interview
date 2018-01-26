@@ -1,0 +1,39 @@
+text = open('input.tab.txt','r')
+lines = text.readlines()
+
+# Make V1, V2
+V1 = []
+V2 = []
+for L in lines:
+    s = L.split()
+    if (len(s) == 2):
+        V1.append(s[0])
+        V2.append(s[1])
+
+
+#V1 = ['A','A','B','B'];
+#V2 = ['GTEX-N7MS-0007-SM-26GME', 'GTEX-N7MS-0007-SM-26GMV', 'GTEX-N7MS-0007-SM-2D43E', 'GTEX-N7MS-0007-SM-2D7W1
+', GTEX-N7MS-0008-SM-4E3JI
+];
+
+# Simplify
+Va = []
+Vb = []
+for i in range(0, len(V1)):
+    x = V1[i]
+    if x not in Va:
+        Va.append(x)
+        j = Va.index(x)
+        Vb.append(V2[i])
+    else:
+        j = Va.index(x)
+        Vb[j] = Vb[j] + ',' + V2[i]
+
+# Simplify
+Vo = [];
+for i in range(0, len(Va)):
+    Vo.append(Va[i] + ' ' + Vb[i])
+
+# Print Out Rows
+for i in range(0, len(Vo)):
+    print(Vo[i])
